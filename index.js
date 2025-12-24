@@ -567,6 +567,76 @@ app.post('/email/BillRejectDD', (req, res) => sendEmail(req, res, 'BillRejectDD'
 app.post('/email/BillResubmittedDD', (req, res) => sendEmail(req, res, 'BillResubmittedDD'));
 
 app.post('/email/informDept', (req, res) => sendEmail(req, res, 'informDept'));
+
+app.post("/send/fail-log", (req, res) => {
+
+      const{
+        to,
+        cc,
+        actionName,
+        actionEndpoint,
+        ErrorInfo,
+        userInfo,
+        OtherInfo,
+      }= req.body;
+      let transporter = nodemailer.createTransport({
+    host: 'smtp.hostinger.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'Dipr@arunachaliprvisualhub.in',
+      pass: 'Digi9@21',
+    },
+   
+  });
+
+  
+  const template=`
+
+  Hello Team,
+
+  This  is to inform you that the Action Failed in DIPR Arunachal Pradesh Advertisement Portal.
+  Please check Backend Logs and Databse for more details.
+  
+  The Overview of the Failed Action is as follows:
+   Action Info:
+         Action Name: ${actionName}
+         Action Endpoint: ${actionEndpoint}
+         Action Time: ${new Date().toISOString()}
+
+  User Info:
+
+       ${JSON.stringify(userInfo,null,1)}
+
+  Error Info:
+
+        ${JSON.stringify(ErrorInfo,null,1)}  
+
+  Other Information: 
+  
+        ${JSON.stringify(OtherInfo,null,1)}  
+
+
+
+  `
+
+
+  let mailOptions = {
+    from: 'Dipr@arunachaliprvisualhub.in',
+    to: to,
+    cc:cc,
+    subject: 'Actiion Failed in DIPR Arunachal Pradesh Advertisement Portal',
+    text: template,
+    attachments: [],
+  };
+
+  try {
+    transporter.sendMail(mailOptions);
+    res.status(200).send({ message: 'Email sent' });
+  } catch (error) {
+    res.status(500).send({ error: error.toString() });
+  }
+});
 app.get("/health", (req, res) => {
   res.status(200).send({ message: "Server is running Healthy" });
 });
