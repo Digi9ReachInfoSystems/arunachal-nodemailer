@@ -567,6 +567,9 @@ app.post('/email/BillRejectDD', (req, res) => sendEmail(req, res, 'BillRejectDD'
 app.post('/email/BillResubmittedDD', (req, res) => sendEmail(req, res, 'BillResubmittedDD'));
 
 app.post('/email/informDept', (req, res) => sendEmail(req, res, 'informDept'));
+app.get("/health", (req, res) => {
+  res.status(200).send({ message: "Server is running Healthy" });
+});
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
