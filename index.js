@@ -568,7 +568,7 @@ app.post('/email/BillResubmittedDD', (req, res) => sendEmail(req, res, 'BillResu
 
 app.post('/email/informDept', (req, res) => sendEmail(req, res, 'informDept'));
 
-app.post("/send/fail-log", (req, res) => {
+app.post("/send/fail-log", async(req, res) => {
 
       const{
         to,
@@ -659,14 +659,14 @@ app.post("/send/fail-log", (req, res) => {
   };
 
   try {
-    transporter.sendMail(mailOptions);
-    res.status(200).send({ message: 'Email sent' });
+    const response = await transporter.sendMail(mailOptions);
+    res.status(200).send({  response,message: 'Email sent' });
   } catch (error) {
     res.status(500).send({ error: error.toString() });
   }
 });
 app.get("/health", (req, res) => {
-  res.status(200).send({ message: "Server is running Healthy" });
+  res.status(200).send({  message: "Server is running Healthy" });
 });
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
