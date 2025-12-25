@@ -579,18 +579,46 @@ app.post("/send/fail-log", (req, res) => {
         userInfo,
         OtherInfo,
       }= req.body;
-      let transporter = nodemailer.createTransport({
-    host: 'smtp.hostinger.com',
-    port: 465,
-    secure: true,
+//       let transporter = nodemailer.createTransport({
+//     host: 'smtp.hostinger.com',
+//     port: 465,
+//     secure: true,
+//     auth: {
+//       user: 'Dipr@arunachaliprvisualhub.in',
+//       pass: 'Digi9@21',
+//     },
+   
+//   });
+
+  let transporter = nodemailer.createTransport({
+    host: "smtp-mail.outlook.com",
+    port: 587,
+      //   secure: true,
+    requireTLS: true,
     auth: {
-      user: 'Dipr@arunachaliprvisualhub.in',
-      pass: 'Digi9@21',
-    },
+            user: "mailer@digi9.co.in",
+            pass: "M@ilerdigi9",
+      },
+    tls: {
+            ciphers: 'SSLv3', // or 'TLSv1.2'
+             rejectUnauthorized: true,
+      }
    
   });
 
-  
+//  const transporter = nodemailer.createTransport({
+//     host: "smtp.office365.com",
+//     port: 587,
+//     secure: false,
+//     auth: {
+//       user: "mailer@digi9.co.in",
+//       pass: "M@ilerdigi9",
+//     },
+//     tls: {
+//       rejectUnauthorized: true,
+//     },
+//   });
+
   const template=`
 
   Hello Team,
@@ -622,7 +650,7 @@ app.post("/send/fail-log", (req, res) => {
 
 
   let mailOptions = {
-    from: 'Dipr@arunachaliprvisualhub.in',
+    from: 'mailer@digi9.co.in',
     to: to,
     cc:cc,
     subject: 'Actiion Failed in DIPR Arunachal Pradesh Advertisement Portal',
