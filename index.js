@@ -590,34 +590,34 @@ app.post("/send/fail-log", (req, res) => {
    
 //   });
 
-  let transporter = nodemailer.createTransport({
-    host: "smtp-mail.outlook.com",
-    port: 587,
-      //   secure: true,
-    requireTLS: true,
-    auth: {
-            user: "mailer@digi9.co.in",
-            pass: "M@ilerdigi9",
-      },
-    tls: {
-            ciphers: 'SSLv3', // or 'TLSv1.2'
-             rejectUnauthorized: true,
-      }
-   
-  });
-
-//  const transporter = nodemailer.createTransport({
-//     host: "smtp.office365.com",
+//   let transporter = nodemailer.createTransport({
+//     host: "smtp-mail.outlook.com",
 //     port: 587,
-//     secure: false,
+//       //   secure: true,
+//     requireTLS: true,
 //     auth: {
-//       user: "mailer@digi9.co.in",
-//       pass: "M@ilerdigi9",
-//     },
+//             user: "mailer@digi9.co.in",
+//             pass: "M@ilerdigi9",
+//       },
 //     tls: {
-//       rejectUnauthorized: true,
-//     },
+//             ciphers: 'SSLv3', // or 'TLSv1.2'
+//              rejectUnauthorized: true,
+//       }
+   
 //   });
+
+ const transporter = nodemailer.createTransport({
+    host: "smtp.office365.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "mailer@digi9.co.in",
+      pass: "M@ilerdigi9",
+    },
+    tls: {
+      rejectUnauthorized: true,
+    },
+  });
 
   const template=`
 
