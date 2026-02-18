@@ -583,6 +583,7 @@ app.post('/email/bill-raised', (req, res) => sendEmail(req, res, 'bill-raised'))
 app.post('/email/accept35', (req, res) => sendEmail(req, res, 'accept35'));
 app.post('/email/BillRejectDD', (req, res) => sendEmail(req, res, 'BillRejectDD'));
 app.post('/email/BillResubmittedDD', (req, res) => sendEmail(req, res, 'BillResubmittedDD'));
+app.post('/email/BillRejectedDD', (req, res) => sendEmail(req, res, 'BillRejectedDD'));
 
 app.post('/email/informDept', (req, res) => sendEmail(req, res, 'informDept'));
 
