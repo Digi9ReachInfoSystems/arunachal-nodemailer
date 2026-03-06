@@ -8,32 +8,32 @@ app.use(express.json());
 app.use(cors()); // Enable CORS
 
 const sendEmail = async (req, res, template) => {
-  const { to,cc,roNumber, articleTitle, vendorName, vendorContact, attachmentUrl,notesheetNumber,amount,dateOfApproval,advertisementNumber,result,resultComment,addressTo,regardsFrom,billAddress,billNumber,reasonOfRejection,listOfNewspapers} = req.body;
+      const { to, cc, roNumber, articleTitle, vendorName, vendorContact, attachmentUrl, notesheetNumber, amount, dateOfApproval, advertisementNumber, result, resultComment, addressTo, regardsFrom, billAddress, billNumber, reasonOfRejection, listOfNewspapers } = req.body;
 
-  let transporter = nodemailer.createTransport({
-    host: 'smtp.hostinger.com',
-    port: 465,
-    secure: true,
-    auth: {
-      user: 'Dipr@arunachaliprvisualhub.in',
-      pass: 'Digi9@21',
-    },
-   
-  });
+      let transporter = nodemailer.createTransport({
+            host: 'smtp.hostinger.com',
+            port: 465,
+            secure: true,
+            auth: {
+                  user: 'Dipr@arunachaliprvisualhub.in',
+                  pass: 'Digi9@21',
+            },
 
-  let mailOptions = {
-    from: 'Dipr@arunachaliprvisualhub.in',
-    to: to,
-    cc:cc,
-    subject: '',
-    text: '',
-    attachments: [],
-  };
+      });
 
-  switch (template) {
-    case 'release-order':
-      mailOptions.subject = `Release Order for Publication - ${roNumber}`;
-      mailOptions.text = `Greetings Sir,
+      let mailOptions = {
+            from: 'Dipr@arunachaliprvisualhub.in',
+            to: to,
+            cc: cc,
+            subject: '',
+            text: '',
+            attachments: [],
+      };
+
+      switch (template) {
+            case 'release-order':
+                  mailOptions.subject = `Release Order for Publication - ${roNumber}`;
+                  mailOptions.text = `Greetings Sir,
 
 I hope this email finds you well.
 
@@ -46,14 +46,14 @@ Best regards,
 ${addressTo}
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
 
 
-      
-      case 'accepting':
-      mailOptions.subject = ` Notification for Release Order ${roNumber}.`;
-      mailOptions.text = `Dear ADVT-Cell,
+
+            case 'accepting':
+                  mailOptions.subject = ` Notification for Release Order ${roNumber}.`;
+                  mailOptions.text = `Dear ADVT-Cell,
 
 We are pleased to inform you that the Release Order ${roNumber} for the article has been ${result} by the Deputy Director ${resultComment}
 
@@ -68,11 +68,11 @@ Deputy Director
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
 
-break;
+                  break;
 
-   case 'accept35':
-      mailOptions.subject = ` Notification for Notesheet No. ${notesheetNumber}.`;
-      mailOptions.text = `Dear ${addressTo},
+            case 'accept35':
+                  mailOptions.subject = ` Notification for Notesheet No. ${notesheetNumber}.`;
+                  mailOptions.text = `Dear ${addressTo},
 
 We are pleased to inform you that the Notesheet No. ${notesheetNumber} for the article has been ${result}.
 
@@ -87,13 +87,13 @@ Director
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
 
-break;
+                  break;
 
 
 
-case 'billRaisedDeputy':
-      mailOptions.subject = `Action Required: Review and Process Bill for RO Number ${roNumber}`;
-      mailOptions.text = `Dear Deputy Director,
+            case 'billRaisedDeputy':
+                  mailOptions.subject = `Action Required: Review and Process Bill for RO Number ${roNumber}`;
+                  mailOptions.text = `Dear Deputy Director,
 
 I hope this email finds you well.
 
@@ -107,12 +107,12 @@ ${vendorName}
 ${vendorContact}
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
-  
+                  break;
 
-case 'billRaisedCtd':
-      mailOptions.subject = `Notification: Bill Raised for RO Number ${roNumber}`;
-      mailOptions.text = `Dear Caseworker,
+
+            case 'billRaisedCtd':
+                  mailOptions.subject = `Notification: Bill Raised for RO Number ${roNumber}`;
+                  mailOptions.text = `Dear Caseworker,
 
 I hope this email finds you well.
 
@@ -126,12 +126,12 @@ Best regards,
 Deputy Director
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
 
-  case 'assistantBill':
-      mailOptions.subject = `Action Required: Review and Process Bill for RO Number ${roNumber}`;
-      mailOptions.text = `Dear Assistant,
+            case 'assistantBill':
+                  mailOptions.subject = `Action Required: Review and Process Bill for RO Number ${roNumber}`;
+                  mailOptions.text = `Dear Assistant,
 
 I hope this email finds you well.
 
@@ -145,10 +145,10 @@ ${vendorName}
 ${vendorContact}
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
- case 'BillRejectDD':
-      mailOptions.subject = `Bill Rejected for RO Number ${roNumber}`;
-      mailOptions.text = `Dear ${addressTo},
+                  break;
+            case 'BillRejectDD':
+                  mailOptions.subject = `Bill Rejected for RO Number ${roNumber}`;
+                  mailOptions.text = `Dear ${addressTo},
 
 I hope this email finds you well.
 
@@ -163,11 +163,11 @@ ${vendorName}
 ${vendorContact}
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
-case 'BillResubmittedDD':
-      mailOptions.subject = `Resubmission of Bill for RO Number ${roNumber}`;
-      mailOptions.text = `Dear ${addressTo},
+            case 'BillResubmittedDD':
+                  mailOptions.subject = `Resubmission of Bill for RO Number ${roNumber}`;
+                  mailOptions.text = `Dear ${addressTo},
 
 I hope this email finds you well.
 
@@ -182,10 +182,10 @@ ${vendorName}
 ${vendorContact}
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
-case 'BillRejectedDD':
-      mailOptions.subject = `Resubmission of Bill for RO Number ${roNumber}`;
-      mailOptions.text = `Dear ${addressTo},
+                  break;
+            case 'BillRejectedDD':
+                  mailOptions.subject = `Resubmission of Bill for RO Number ${roNumber}`;
+                  mailOptions.text = `Dear ${addressTo},
 
 I hope this email finds you well.
 
@@ -200,12 +200,12 @@ ${vendorName}
 ${vendorContact}
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
-      
- case 'notesheetcreate':
-      mailOptions.subject = `Request for Review and Action: Notesheet ${notesheetNumber}.`;
-      mailOptions.text = `Dear Deputy Director,
+
+            case 'notesheetcreate':
+                  mailOptions.subject = `Request for Review and Action: Notesheet ${notesheetNumber}.`;
+                  mailOptions.text = `Dear Deputy Director,
 
 I hope this email finds you well.
 
@@ -218,12 +218,12 @@ Best regards,
 Assistant
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
 
- case 'faoNotesheet':
-      mailOptions.subject = `Review Request for Notesheet ${notesheetNumber}.`;
-      mailOptions.text = `Dear FAO,
+            case 'faoNotesheet':
+                  mailOptions.subject = `Review Request for Notesheet ${notesheetNumber}.`;
+                  mailOptions.text = `Dear FAO,
 
 I hope this email finds you well.
 
@@ -236,11 +236,11 @@ Best regards,
 Deputy Director
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
-      
- case 'directorNotesheet':
-      mailOptions.subject = `Review and  Request for Notesheet ${notesheetNumber}`;
-      mailOptions.text = `Dear ${addressTo},
+                  break;
+
+            case 'directorNotesheet':
+                  mailOptions.subject = `Review and  Request for Notesheet ${notesheetNumber}`;
+                  mailOptions.text = `Dear ${addressTo},
 
 I hope this email finds you well.
 
@@ -253,11 +253,11 @@ Best regards,
 ${regardsFrom}
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
- case 'notesheetRejected':
-      mailOptions.subject = `Notesheet Rejected: Feedback and Necessary Actions Required`;
-      mailOptions.text = `Greetings Sir/Madam,
+            case 'notesheetRejected':
+                  mailOptions.subject = `Notesheet Rejected: Feedback and Necessary Actions Required`;
+                  mailOptions.text = `Greetings Sir/Madam,
 
 I hope this email finds you well.
 
@@ -271,11 +271,11 @@ Best regards,
 ${addressTo}
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
-   case 'secretaryNotesheet':
-      mailOptions.subject = ` Needed: Notesheet ${notesheetNumber}`;
-      mailOptions.text = `Dear Secretary,
+            case 'secretaryNotesheet':
+                  mailOptions.subject = ` Needed: Notesheet ${notesheetNumber}`;
+                  mailOptions.text = `Dear Secretary,
 
 I hope this email finds you well.
 
@@ -288,12 +288,12 @@ Best regards,
 Director
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
 
- case 'uploadSanction':
-      mailOptions.subject = `Action Required: Upload Sanction Letter for Notesheet ${notesheetNumber}`;
-      mailOptions.text = `Dear Assistant,
+            case 'uploadSanction':
+                  mailOptions.subject = `Action Required: Upload Sanction Letter for Notesheet ${notesheetNumber}`;
+                  mailOptions.text = `Dear Assistant,
 
 I hope this email finds you well.
 
@@ -306,12 +306,12 @@ Best regards,
 Secretary
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
 
- case 'approvalSanction':
-      mailOptions.subject = `Action Required: View and Submit Approval for Sanction letter`;
-      mailOptions.text = `Dear Accountant,
+            case 'approvalSanction':
+                  mailOptions.subject = `Action Required: View and Submit Approval for Sanction letter`;
+                  mailOptions.text = `Dear Accountant,
 
 I hope this email finds you well.
 
@@ -325,13 +325,13 @@ Best regards,
 Assistant
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
-    
-    
-    case 'approvedTFao':
-      mailOptions.subject = `Approval Notification for Notesheet ${notesheetNumber} `;
-      mailOptions.text = `Dear UnderSecretary,
+
+
+            case 'approvedTFao':
+                  mailOptions.subject = `Approval Notification for Notesheet ${notesheetNumber} `;
+                  mailOptions.text = `Dear UnderSecretary,
 
 I hope this email finds you well.
 
@@ -346,12 +346,12 @@ Best regards,
 Secretary
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
 
- case 'approvedTCase':
-      mailOptions.subject = `Approval and Acknowledgement of Advertisement ${advertisementNumber}`;
-      mailOptions.text = `Dear Caseworker,
+            case 'approvedTCase':
+                  mailOptions.subject = `Approval and Acknowledgement of Advertisement ${advertisementNumber}`;
+                  mailOptions.text = `Dear Caseworker,
 
 I hope this email finds you well.
 
@@ -364,11 +364,11 @@ Best regards,
 Accountant
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
- case 'approvedTDd':
-      mailOptions.subject = `Approval and Acknowledgement of Advertisement ${advertisementNumber}`;
-      mailOptions.text = `Dear Deputy Director,
+            case 'approvedTDd':
+                  mailOptions.subject = `Approval and Acknowledgement of Advertisement ${advertisementNumber}`;
+                  mailOptions.text = `Dear Deputy Director,
 
 I hope this email finds you well.
 
@@ -381,12 +381,12 @@ Best regards,
 Accountant
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
 
- case 'approvedTDCase':
-      mailOptions.subject = `Bill Approval Notice: Release Order ${roNumber}`;
-      mailOptions.text = `Greetings Sir/Madam,
+            case 'approvedTDCase':
+                  mailOptions.subject = `Bill Approval Notice: Release Order ${roNumber}`;
+                  mailOptions.text = `Greetings Sir/Madam,
 
 I hope this email finds you well.
 
@@ -399,11 +399,11 @@ Best regards,
 Deputy Director
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
-      
-      case 'vendorreply':
-      mailOptions.subject = `Acceptance of Release Order ${roNumber} by ${vendorName}`;
-      mailOptions.text = `Dear Deputy Director,
+                  break;
+
+            case 'vendorreply':
+                  mailOptions.subject = `Acceptance of Release Order ${roNumber} by ${vendorName}`;
+                  mailOptions.text = `Dear Deputy Director,
 
 We would like to inform you that the Release Order ${roNumber} for the article has been accepted by  ${vendorName}, and the bill will be raised accordingly.
 
@@ -415,18 +415,18 @@ Best regards,
 ${vendorName}
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
 
 
 
 
 
-      
 
-    case 'approval-request':
-      mailOptions.subject = `Request for Approval - Release Order for ${articleTitle}`;
-      mailOptions.text = `Dear Deputy Director,
+
+            case 'approval-request':
+                  mailOptions.subject = `Request for Approval - Release Order for ${articleTitle}`;
+                  mailOptions.text = `Dear Deputy Director,
 
 I hope this email finds you well.
 
@@ -439,11 +439,11 @@ Best regards,
 ADVT-Cell
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
-    case 'ro-status':
-      mailOptions.subject = `Status Update: Release Order ${result} for RO number ${roNumber}`;
-      mailOptions.text = `Dear ${addressTo},
+            case 'ro-status':
+                  mailOptions.subject = `Status Update: Release Order ${result} for RO number ${roNumber}`;
+                  mailOptions.text = `Dear ${addressTo},
 
 We would like to inform you that the Release Order ${roNumber} for the article has been ${result} by ${vendorName}.
 
@@ -455,11 +455,11 @@ Thank you for your attention to this matter.
 Best regards,
 ${vendorName}
 ${vendorContact}`;
-      break;
+                  break;
 
-    case 'bill-raised':
-      mailOptions.subject = `Action Required: Bill Raised for Published Article bearing RO Number ${roNumber}`;
-      mailOptions.text = `Dear Deputy Director,
+            case 'bill-raised':
+                  mailOptions.subject = `Action Required: Bill Raised for Published Article bearing RO Number ${roNumber}`;
+                  mailOptions.text = `Dear Deputy Director,
 
 This is to inform you that a bill has been raised by ${vendorName} for the publication of the article bearing RO Number ${roNumber}.
 The bill, with number ${billNumber}, is addressed to ${billAddress}.
@@ -471,10 +471,10 @@ Thank you for your prompt attention to this matter.
 Best regards,
 ${vendorName}
 ${vendorContact}`;
-      break;
- case 'VendorStausDept':
-      mailOptions.subject = `Acknowledgement: Vendor Confirmed Advertisement for RO Number ${roNumber}`;
-      mailOptions.text = `Dear Sir/Madam,
+                  break;
+            case 'VendorStausDept':
+                  mailOptions.subject = `Acknowledgement: Vendor Confirmed Advertisement for RO Number ${roNumber}`;
+                  mailOptions.text = `Dear Sir/Madam,
 
 I hope this email finds you well.
 
@@ -487,11 +487,11 @@ ${vendorName}
 ${vendorContact}
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
-       case 'informDept':
-      const newspapersListText = listOfNewspapers.join('\n'); 
-      mailOptions.subject = `Notification: Release Order Sent to Vendors for Advertisement Number ${advertisementNumber}`;
-      mailOptions.text = `Dear Sir/Madam,
+                  break;
+            case 'informDept':
+                  const newspapersListText = listOfNewspapers.join('\n');
+                  mailOptions.subject = `Notification: Release Order Sent to Vendors for Advertisement Number ${advertisementNumber}`;
+                  mailOptions.text = `Dear Sir/Madam,
 I hope this email finds you well.
 
 This is to inform you that your advertisement sent to us(DIPR) vide No. ${advertisementNumber} has been sent/released to the following newspapers for publishing:
@@ -504,11 +504,11 @@ Warm regards.
 Deputy Director of IPR(Advt)
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
-      break;
+                  break;
 
-    default:
-      mailOptions.subject = req.body.subject;
-      mailOptions.text = `Attention Required,
+            default:
+                  mailOptions.subject = req.body.subject;
+                  mailOptions.text = `Attention Required,
 
 We are reaching out to inform you for the following:
 
@@ -516,29 +516,33 @@ ${req.body.text}
 Please take the necessary action.
 
 Best regards,`;
-  }
+      }
 
-  // Only attempt to add an attachment if an attachment URL is provided
-  if (attachmentUrl) {
-    try {
-      const response = await axios.get(attachmentUrl, { responseType: 'arraybuffer' });
-      // Add the attachment to the mail options
-      mailOptions.attachments.push({
-        filename: 'attachment.png', // Adjust filename as needed
-        content: response.data,
-      });
-    } catch (error) {
-      return res.status(500).send({ error: `Failed to fetch attachment: ${error.toString()}` });
-    }
-  }
+      // Only attempt to add an attachment if an attachment URL is provided
+      if (attachmentUrl) {
+            try {
+                  const response = await axios.get(attachmentUrl, { responseType: 'arraybuffer' });
+                  // Add the attachment to the mail options
+                  mailOptions.attachments.push({
+                        filename: 'attachment.png', // Adjust filename as needed
+                        content: response.data,
+                  });
+            } catch (error) {
+                  console.log("Request body", req.body);
+                  console.error("Error sending email:", error);
+                  return res.status(500).send({ error: `Failed to fetch attachment: ${error.toString()}` });
+            }
+      }
 
-  // Attempt to send the email (with or without the attachment)
-  try {
-    await transporter.sendMail(mailOptions);
-    res.status(200).send({ message: 'Email sent' + (attachmentUrl ? ' with attachment' : '') });
-  } catch (error) {
-    res.status(500).send({ error: error.toString() });
-  }
+      // Attempt to send the email (with or without the attachment)
+      try {
+            await transporter.sendMail(mailOptions);
+            res.status(200).send({ message: 'Email sent' + (attachmentUrl ? ' with attachment' : '') });
+      } catch (error) {
+            console.log("Request body", req.body);
+            console.error("Error sending email:", error);
+            res.status(500).send({ error: error.toString() });
+      }
 };
 
 // Original send-email endpoint
@@ -587,58 +591,58 @@ app.post('/email/BillRejectedDD', (req, res) => sendEmail(req, res, 'BillRejecte
 
 app.post('/email/informDept', (req, res) => sendEmail(req, res, 'informDept'));
 
-app.post("/send/fail-log", async(req, res) => {
+app.post("/send/fail-log", async (req, res) => {
 
-      const{
-        to,
-        cc,
-        actionName,
-        actionEndpoint,
-        ErrorInfo,
-        userInfo,
-        OtherInfo,
-      }= req.body;
-//       let transporter = nodemailer.createTransport({
-//     host: 'smtp.hostinger.com',
-//     port: 465,
-//     secure: true,
-//     auth: {
-//       user: 'Dipr@arunachaliprvisualhub.in',
-//       pass: 'Digi9@21',
-//     },
-   
-//   });
+      const {
+            to,
+            cc,
+            actionName,
+            actionEndpoint,
+            ErrorInfo,
+            userInfo,
+            OtherInfo,
+      } = req.body;
+      //       let transporter = nodemailer.createTransport({
+      //     host: 'smtp.hostinger.com',
+      //     port: 465,
+      //     secure: true,
+      //     auth: {
+      //       user: 'Dipr@arunachaliprvisualhub.in',
+      //       pass: 'Digi9@21',
+      //     },
 
-//   let transporter = nodemailer.createTransport({
-//     host: "smtp-mail.outlook.com",
-//     port: 587,
-//       //   secure: true,
-//     requireTLS: true,
-//     auth: {
-//             user: "mailer@digi9.co.in",
-//             pass: "M@ilerdigi9",
-//       },
-//     tls: {
-//             ciphers: 'SSLv3', // or 'TLSv1.2'
-//              rejectUnauthorized: true,
-//       }
-   
-//   });
+      //   });
 
- const transporter = nodemailer.createTransport({
-    host: "smtp.office365.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: "mailer@digi9.co.in",
-      pass: "M@ilerdigi9",
-    },
-    tls: {
-      rejectUnauthorized: true,
-    },
-  });
+      //   let transporter = nodemailer.createTransport({
+      //     host: "smtp-mail.outlook.com",
+      //     port: 587,
+      //       //   secure: true,
+      //     requireTLS: true,
+      //     auth: {
+      //             user: "mailer@digi9.co.in",
+      //             pass: "M@ilerdigi9",
+      //       },
+      //     tls: {
+      //             ciphers: 'SSLv3', // or 'TLSv1.2'
+      //              rejectUnauthorized: true,
+      //       }
 
-  const template=`
+      //   });
+
+      const transporter = nodemailer.createTransport({
+            host: "smtp.office365.com",
+            port: 587,
+            secure: false,
+            auth: {
+                  user: "mailer@digi9.co.in",
+                  pass: "M@ilerdigi9",
+            },
+            tls: {
+                  rejectUnauthorized: true,
+            },
+      });
+
+      const template = `
 
   Hello Team,
 
@@ -653,43 +657,43 @@ app.post("/send/fail-log", async(req, res) => {
 
   User Info:
 
-       ${JSON.stringify(userInfo,null,1)}
+       ${JSON.stringify(userInfo, null, 1)}
 
   Error Info:
 
-        ${JSON.stringify(ErrorInfo,null,1)}  
+        ${JSON.stringify(ErrorInfo, null, 1)}  
 
   Other Information: 
   
-        ${JSON.stringify(OtherInfo,null,1)}  
+        ${JSON.stringify(OtherInfo, null, 1)}  
 
 
 
   `
 
 
-  let mailOptions = {
-    from: 'mailer@digi9.co.in',
-    to: to,
-    cc:cc,
-    subject: 'Actiion Failed in DIPR Arunachal Pradesh Advertisement Portal',
-    text: template,
-    attachments: [],
-  };
+      let mailOptions = {
+            from: 'mailer@digi9.co.in',
+            to: to,
+            cc: cc,
+            subject: 'Actiion Failed in DIPR Arunachal Pradesh Advertisement Portal',
+            text: template,
+            attachments: [],
+      };
 
-  try {
-    const response = await transporter.sendMail(mailOptions);
-    res.status(200).send({  response,message: 'Email sent' });
-  } catch (error) {
-    res.status(500).send({ error: error.toString() });
-  }
+      try {
+            const response = await transporter.sendMail(mailOptions);
+            res.status(200).send({ response, message: 'Email sent' });
+      } catch (error) {
+            res.status(500).send({ error: error.toString() });
+      }
 });
 app.get("/health", (req, res) => {
-  res.status(200).send({  message: "Server is running Healthy" });
+      res.status(200).send({ message: "Server is running Healthy" });
 });
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+      console.log(`Server running on port ${port}`);
 });
 
 module.exports = app;
