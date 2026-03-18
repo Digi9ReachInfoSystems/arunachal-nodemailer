@@ -505,6 +505,21 @@ Deputy Director of IPR(Advt)
 Department of Information and Public Relations
 Government of Arunachal Pradesh`;
                   break;
+            case 'pullbackDD':
+                  mailOptions.subject = `Cancellation of Advertisement Submitted for Publication: Release Order ${roNumber}`;
+                  mailOptions.text = `Greetings Sir/Madam,
+
+I hope this email finds you well.
+
+This is to inform you that the advertisement submitted earlier for publication under Release Order Number ${roNumber} has been canceled as per the approval of the Deputy Director.
+
+Thank you for your  attention to this matter.
+
+Best regards,
+Deputy Director
+Department of Information and Public Relations
+Government of Arunachal Pradesh`;
+                  break;
 
             default:
                   mailOptions.subject = req.body.subject;
@@ -588,6 +603,7 @@ app.post('/email/accept35', (req, res) => sendEmail(req, res, 'accept35'));
 app.post('/email/BillRejectDD', (req, res) => sendEmail(req, res, 'BillRejectDD'));
 app.post('/email/BillResubmittedDD', (req, res) => sendEmail(req, res, 'BillResubmittedDD'));
 app.post('/email/BillRejectedDD', (req, res) => sendEmail(req, res, 'BillRejectedDD'));
+app.post('/email/pullback', (req, res) => sendEmail(req, res, 'pullbackDD'));
 
 app.post('/email/informDept', (req, res) => sendEmail(req, res, 'informDept'));
 
